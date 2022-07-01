@@ -10,7 +10,7 @@ public class Evento {
 	     private String titolo;
 	     private LocalDate data;
 	     private int numPostiTot;
-	     private int numPostiPrenotati = 0;
+	     private int numPostiPrenotati;
 	     private LocalDate oggi = LocalDate.now();
 		 private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -20,7 +20,7 @@ public class Evento {
 	    	 this.titolo = titolo;
 	    	 this.data = data;
 	    	 this.numPostiTot = numPostiTot;
-	    	 
+	    	 this.numPostiPrenotati = 0;
 	    	 validaData();
 	    	 validaPosti();
 	    	 prenota();
@@ -67,11 +67,15 @@ public class Evento {
 			this.formatter = formatter;
 		}
 		
+		public int postiDisponibili() {
+				return numPostiTot - numPostiPrenotati;
+		}
 		public void validaData() throws Exception {
 			if (oggi.isAfter(data)) {
 				throw new Exception ("Non è possibile prenotare con data passata");
 			}
 		}
+	
 		public void validaPosti() throws Exception {
 			if (numPostiTot < 0) {
 				throw new Exception ("nserire un numero valido maggiore di 0");
