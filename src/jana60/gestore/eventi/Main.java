@@ -1,11 +1,21 @@
 package jana60.gestore.eventi;
 
 
-	import java.time.LocalDate;
+	import java.time.DateTimeException;
+import java.time.LocalDate;
 	import java.util.Scanner;
 
 	public class Main {
-
+/*1.   Creare una classe  Main  di test, in cui si chiede all’utente  di inserire un nuovo evento 
+ con tutti i parametri. 
+ 2.   Dopo che l’evento è stato istanziato, chiedere all’utente se e quante prenotazioni 
+ vuole fare e provare ad effettuarle, implementando opportuni controlli e gestendo 
+ eventuali eccezioni. 
+ 3.   Stampare a video il numero di posti prenotati e quelli disponibili 
+ 4.   Chiedere all’utente se e quanti posti vuole disdire 
+ 5.   Provare ad effettuare le disdette, implementando opportuni controlli e gestendo 
+ eventuali eccezioni 
+ 6.   Stampare a video il numero di posti prenotati e quelli disponibili */
 		public static void main(String[] args) throws Exception {
 
 			Scanner scan = new Scanner(System.in);
@@ -13,6 +23,8 @@ package jana60.gestore.eventi;
 			String prenotazione;
 			String disdetta;
 			Evento e = null;
+			
+		
 			do {
 				try {
 					System.out.println("Benvenuto in Java Eventi!");
@@ -30,13 +42,18 @@ package jana60.gestore.eventi;
 					int capienza = Integer.parseInt(scan.nextLine());
 					e = new Evento(titolo, data, capienza);
 					System.out.println(e);
-					flag = true;
+					flag = false;
+					
+				} catch (DateTimeException ex) {
+					System.out.println("I valori devono essere numeri superiori a 0");
+				} catch (NumberFormatException ex ) {
+					System.out.println("I valori devono essere numeri superiori a 0 ");
 				} catch (Exception ex) {
+					System.out.println("E' stato riscontrato un errore, riprova.");
 					System.out.println(ex.getMessage());
-				}
-			} while (!flag);
-	
-			boolean chiudi = false;
+				} 
+			} while (flag);
+			
 			
 
 			System.out.println("Inserisci 1 per prenotare o  2 per terminare ");
@@ -55,7 +72,7 @@ package jana60.gestore.eventi;
 			}
 			case "2": {
 				System.out.println("Grazie e arrivederci");
-				chiudi = true;
+				flag = true;
 			}
 	
            }
