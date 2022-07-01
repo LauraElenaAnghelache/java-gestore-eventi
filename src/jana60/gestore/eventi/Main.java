@@ -2,7 +2,7 @@ package jana60.gestore.eventi;
 
 
 	import java.time.DateTimeException;
-import java.time.LocalDate;
+    import java.time.LocalDate;
 	import java.util.Scanner;
 
 	public class Main {
@@ -42,9 +42,10 @@ import java.time.LocalDate;
 					int capienza = Integer.parseInt(scan.nextLine());
 					e = new Evento(titolo, data, capienza);
 					System.out.println(e);
+					
 					flag = false;
 					
-				} catch (DateTimeException ex) {
+				}catch (DateTimeException ex) {
 					System.out.println("I valori devono essere numeri superiori a 0");
 				} catch (NumberFormatException ex ) {
 					System.out.println("I valori devono essere numeri superiori a 0 ");
@@ -53,13 +54,11 @@ import java.time.LocalDate;
 					System.out.println(ex.getMessage());
 				} 
 			} while (flag);
-			
-			
-
-			System.out.println("Inserisci 1 per prenotare o  2 per terminare ");
-			prenotazione = scan.nextLine();
-			switch (prenotazione) {
-			case "1": {
+			      
+			        System.out.println("Inserisci 1 per prenotare o  2 per terminare ");
+			        prenotazione = scan.nextLine();
+			        switch (prenotazione) {
+			        case "1": {
 				System.out.println("Inserisci il numero di prenotazioni da effettuare ");
 				int prenot = Integer.parseInt(scan.nextLine());
 				for (int i = 0; i < prenot; i++)
@@ -81,20 +80,22 @@ import java.time.LocalDate;
 			switch (disdetta) {
 			case "1": {
 				System.out.println("Inserisci quanti posti vuoi togliere ");
-				int disd = Integer.parseInt(scan.nextLine());
-				for (int i = 0; i < disd; i++)
+				int disdetto = Integer.parseInt(scan.nextLine());
+				for (int i = 0; i < disdetto; i++)
 	
 
 					e.disdici();
-				System.out.println("I posti che hai tolto sono " + disd + " I posti che hai prenotato sono "+e.getNumPostiPrenotati()+" e la disponibilità rimasta è : "
+				System.out.println("I posti da te eliminati sono :" + disdetto + " I posti che hai prenotato sono "+e.getNumPostiPrenotati()+" e la disponibilità rimasta è : "
 						+ e.postiDisponibili());
 				System.out.println("Grazie e arrivederci");
 				break;
 			}
 			case "2": {
 				System.out.println("Grazie e arrivederci");
-				
 			}
+			}
+		
+		scan.close();
 			}
 		}
-	}
+	

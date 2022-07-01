@@ -28,7 +28,7 @@ public class Evento {
 
 	
 		//ATTRIBUTI
-	     private String titolo;
+	     private String titolo = null;
 	     private LocalDate data;
 	     private int numPostiTot;
 	     private int numPostiPrenotati;
@@ -124,9 +124,8 @@ public class Evento {
 		
 		@Override
 		public String toString() {
-			return "Titolo evento:" + titolo + "\n Data evento:" + formatter.format(data);
-		
-
+				return "Posti disponibili: " + postiDisponibili() + " Evento: " + titolo +" "+ "in data:" +formatter.format(data);
+			}
 	}
 
-}
+
